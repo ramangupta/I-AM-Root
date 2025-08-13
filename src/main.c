@@ -26,7 +26,26 @@ void print_menu() {
     printf("q. Quit\n");
 }
 
-int main() {
+int main(int argc, char *argv[]) {
+    
+    if (argc > 1) {
+        if (strcmp(argv[1], "--quote") == 0) {
+            show_quote();
+            return 0;
+        } else if (strcmp(argv[1], "--breathe") == 0) {
+            start_breathing(1);
+            return 0;
+        } else if (strcmp(argv[1], "--syscheck") == 0) {
+            check_system_health();
+            return 0;
+        } else if (strcmp(argv[1], "--help") == 0) {
+            printf("Usage: %s [--quote | --breathe | --syscheck | --help]\n", argv[0]);
+            return 0;
+        }
+    }
+
+    // Default interactive mode
+    printf("Welcome to I AM Root interactive mode.\n\n");
     print_logo();
     char choice[10];
 
