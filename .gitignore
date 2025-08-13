@@ -1,2 +1,4 @@
-iamroot
 *.o
+.venv/
+*.log
+__pycache__/
