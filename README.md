@@ -62,3 +62,25 @@ python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\act
 
 # 3) Run a sample utility (placeholder)
 ./scripts/bootstrap.sh     # or: python src/tools/hello_root.py
+
+📂 Project Structure
+I-AM-Root/
+├── src/                  # Core source (tools, libs, experiments)
+│   ├── tools/            # CLI utilities & scripts
+│   └── core/             # Reusable modules
+├── scripts/              # Dev/ops scripts (bootstrap, setup, lint, etc.)
+├── docs/                 # Notes, design, research
+├── tests/                # Unit/integration tests
+├── .gitignore
+└── README.md
+
+🖤 Philosophy
+Understand > Memorize: know the why behind the how.
+
+Safety by Default: sharp tools, guarded edges.
+
+Minimal > Maximal: fewer moving parts, more momentum.
+
+Open Source > Gatekeeping: we grow by sharing.
+
+
