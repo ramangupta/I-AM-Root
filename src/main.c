@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "breathe.h"
 #include "quote.h"
@@ -23,12 +24,16 @@ void print_logo() {
 }
 
 void print_menu() {
+    printf("\033[1;32m"); // Green color for menu
     printf("\n=== I AM Root Menu ===\n");
     printf("1. Breathing Exercise\n");
     printf("2. Daily Quote\n");
     printf("3. Focus Timer\n");
     printf("4. System Health Check\n");
+    printf("5. Read a Free Motivational Story\n");
+    printf("6. Read a Premium Motivational Story\n");
     printf("q. Quit\n");
+    printf("\033[0m"); // Reset color
 }
 
 int main(int argc, char *argv[]) {
@@ -43,20 +48,25 @@ int main(int argc, char *argv[]) {
         } else if (strcmp(argv[1], "--syscheck") == 0) {
             check_system_health();
             return 0;
+        } else if (strcmp(argv[1], "--stories") == 0) {
+            return 0;
         } else if (strcmp(argv[1], "--help") == 0) {
-            printf("Usage: %s [--quote | --breathe | --syscheck | --help]\n", argv[0]);
+            printf("Usage: %s [--quote | --breathe | --syscheck | --stories | --help]\n", argv[0]);
             return 0;
         }
     }
 
     // Default interactive mode
-    printf("Welcome to I AM Root interactive mode.\n\n");
-    print_logo();
+    
     char choice[10];
 
     while (1) {
+        system("clear"); // clear terminal for a fresh menu
+
+        printf("Welcome to I AM Root interactive mode.\n\n");
+        print_logo();
         print_menu();
-        printf("Enter choice: ");
+        printf("Enter your choice: ");
         scanf("%s", choice);
 
         if (strcmp(choice, "1") == 0) {
@@ -70,8 +80,12 @@ int main(int argc, char *argv[]) {
             start_timer(minutes);
         } else if (strcmp(choice, "4") == 0) {
             check_system_health();
+        } else if (strcmp(choice, "5") == 0) {
+            system("python3 src/stories.py");
+        } else if (strcmp(choice, "6") == 0) {
+            system("python3 src/stories.py --premium");
         } else if (strcmp(choice, "q") == 0) {
-            printf("Goodbye, Root!\n");
+            printf("Goodbye, Stay with I AM!\n");
             break;
         } else {
             printf("Invalid choice. Try again.\n");
