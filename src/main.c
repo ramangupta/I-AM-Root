@@ -1,49 +1,88 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "breathe.h"
 #include "quote.h"
 #include "timer.h"
 #include "syscheck.h"
 
+// Colors
+#define GREEN   "\033[1;32m"
+#define CYAN    "\033[1;36m"
+#define YELLOW  "\033[1;33m"
+#define RESET   "\033[0m"
+
+// Clear screen
+void clear_screen() {
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
+}
+
 void print_logo() {
-    printf("\033[1;32m"); // Green color
-    printf("  ___   ___   _   _    _    ____  _____ _____ \n");
-    printf(" |_ _| / _ \\ | \\ | |  / \\  |  _ \\| ____|_   _|\n");
-    printf("  | | | | | ||  \\| | / _ \\ | |_) |  _|   | |  \n");
-    printf("  | | | |_| || |\\  |/ ___ \\|  _ <| |___  | |  \n");
-    printf(" |___| \\___/ |_| \\_/_/   \\_\\_| \\_\\_____| |_|  \n");
-    printf("                                              \n");
-    printf("      Root yourself in calm. Grow your system. 🪴\n");
-    printf("          🌱\n");
-    printf("         🌿 🌿\n");
-    printf("       🌿   🌿   🌿\n");
-    printf("      Stay focused. 🚀\n");
-    printf("\033[0m"); // Reset color
-    printf("--------------------------------------------------------\n");
+    printf(GREEN);
+    printf(GREEN);
+    printf("============================================================\n");
+    printf("   ██╗ █████╗ ███╗   ███╗    ██████╗  ██████╗  ██████╗ ████████╗\n");
+    printf("   ██║██╔══██╗████╗ ████║    ██╔══██╗██╔═══██╗██╔═══██╗╚══██╔══╝\n");
+    printf("   ██║███████║██╔████╔██║    ██████╔╝██║   ██║██║   ██║   ██║   \n");
+    printf("   ██║██╔══██║██║╚██╔╝██║    ██╔\\═══╝ ██║   ██║██║   ██║   ██║   \n");
+    printf("   ██║██║  ██║██║ ╚═╝ ██║    ██║ \\   ╚██████╔╝╚██████╔╝   ██║   \n");
+    printf("   ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝    ╚═╝  \\   ╚═════╝  ╚═════╝    ╚═╝   \n");
+    printf(RESET);
+    printf(YELLOW);
+    printf("\n   🌱  Root yourself in calm. Grow your system. 🌱\n");
+    printf("============================================================\n");
+    printf("\n🪴 I AM is the root of all. There is nothing else to know 🪴\n\n");
+    printf("                       🌱\n");
+    printf("                     🌿 🌿\n");
+    printf("                  🌿   🌿   🌿\n");
+    printf("                 Stay focused. 🚀\n\n");
+    printf("============================================================\n" RESET);
 }
 
 void print_menu() {
-    printf("\033[1;32m"); // Green color for menu
-    printf("\n=== I AM Root Menu ===\n");
-    printf("1. Breathing Exercise\n");
-    printf("2. Daily Quote\n");
-    printf("3. Focus Timer\n");
-    printf("4. System Health Check\n");
-    printf("5. Read a Free Motivational Story\n");
-    printf("6. Read a Premium Motivational Story\n");
-    printf("q. Quit\n");
-    printf("\033[0m"); // Reset color
+    printf(CYAN "\n=================== I AM Root Menu ==================\n" RESET);
+    printf(YELLOW "[1]" RESET " 🌬️  Breathing Exercise\n");
+    printf(YELLOW "[2]" RESET " 💬  Daily Quote\n");
+    printf(YELLOW "[3]" RESET " ⏳  Focus Timer\n");
+    printf(YELLOW "[4]" RESET " 🩺  System Health Check\n");
+    printf(YELLOW "[5]" RESET " 📖  Free Motivational Story\n");
+    printf(YELLOW "[6]" RESET " 🌟  Premium Motivational Story\n");
+    printf(YELLOW "[q]" RESET " 🚪  Quit\n");
+}
+
+void clear_input_buffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF) {}
+}
+
+void wait_for_enter() {
+    printf("\nPress Enter to continue...");
+    clear_input_buffer();
+    getchar();
+}
+
+void reading_animation(int seconds) {
+    printf(YELLOW "\n Get Ready to focus on I AM ...\n" RESET);
+    for (int i = seconds; i > 0; i--) {
+        printf("\rStarting in %d second(s)... ", i);
+        fflush(stdout);
+        sleep(1);
+    }
+    printf("\n\n");
 }
 
 int main(int argc, char *argv[]) {
-    
     if (argc > 1) {
         if (strcmp(argv[1], "--quote") == 0) {
             show_quote();
             return 0;
         } else if (strcmp(argv[1], "--breathe") == 0) {
-            start_breathing(1);
+            start_breathing(10);
             return 0;
         } else if (strcmp(argv[1], "--syscheck") == 0) {
             check_system_health();
@@ -56,41 +95,49 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    // Default interactive mode
-    
     char choice[10];
-
     while (1) {
-        system("clear"); // clear terminal for a fresh menu
-
-        printf("Welcome to I AM Root interactive mode.\n\n");
+        clear_screen();
+        printf(YELLOW "Welcome to I AM Root interactive mode.\n\n" RESET);
         print_logo();
         print_menu();
-        printf("Enter your choice: ");
+        printf(YELLOW "Enter your choice: " RESET);
         scanf("%s", choice);
+        clear_input_buffer();
 
         if (strcmp(choice, "1") == 0) {
-            start_breathing(4);
+            reading_animation(2);
+            system("python3 src/breathing_visual_audio.py");
+            wait_for_enter();
         } else if (strcmp(choice, "2") == 0) {
+            reading_animation(2);
             show_quote();
+            wait_for_enter();
         } else if (strcmp(choice, "3") == 0) {
             int minutes;
             printf("Enter focus duration in minutes: ");
             scanf("%d", &minutes);
+            clear_input_buffer();
             start_timer(minutes);
+            wait_for_enter();
         } else if (strcmp(choice, "4") == 0) {
             check_system_health();
+            wait_for_enter();
         } else if (strcmp(choice, "5") == 0) {
+            reading_animation(2);
             system("python3 src/stories.py");
+            wait_for_enter();
         } else if (strcmp(choice, "6") == 0) {
+            reading_animation(2);
             system("python3 src/stories.py --premium");
+            wait_for_enter();
         } else if (strcmp(choice, "q") == 0) {
-            printf("Goodbye, Stay with I AM!\n");
+            printf(GREEN "Goodbye, Stay with I AM! 🌱\n" RESET);
             break;
         } else {
-            printf("Invalid choice. Try again.\n");
+            printf(YELLOW "Invalid choice. Try again.\n" RESET);
+            wait_for_enter();
         }
     }
-
     return 0;
 }

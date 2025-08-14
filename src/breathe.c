@@ -2,16 +2,17 @@
 #include <unistd.h>
 #include "breathe.h"
 
-void start_breathing(int seconds) {
-    for (int cycle = 0; cycle < 3; cycle++) {
+void start_breathing(int cycles) {
+
+    for (int cycle = 0; cycle < cycles; cycle++) {
         printf("\nInhale... with 'I' \n");
-        sleep(seconds);
+        sleep(3);
         printf("Hold...\n");
-        sleep(seconds);
+        sleep(2);
         printf("Exhale...with 'AM' \n");
-        sleep(seconds);
+        sleep(3);
         printf("Hold...\n");
-        sleep(seconds);
+        sleep(2);
     }
     printf("\nBreathing session complete.\n");
 }
