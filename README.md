@@ -22,6 +22,10 @@
   <em>“Access is responsibility. Mastery is freedom.”</em>
 </p>
 
+[![Sponsor via GitHub](https://img.shields.io/badge/Sponsor-GitHub-blue)](https://github.com/sponsors/ramangupta)
+[![Sponsor via Ko-fi](https://img.shields.io/badge/Sponsor-Ko--fi-orange)](https://ko-fi.com/ramangupta)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-yellow)](https://github.com/ramangupta/I-AM-Root)
+
 <p align="center">
   <a href="#-about">About</a> •
   <a href="#-features">Features</a> •
