@@ -1,5 +1,8 @@
-# I AM Root
-> A motivational CLI program that combines quotes, breathing exercises, and system checks to help you stay focused and grounded.
+# I-AM-ROOT 🌱
+
+A meditative, animated terminal experience with falling leaves & sprouting shoots.
+
+![I-AM-ROOT Screenshot](assets/screenshot.png)
 
 ![CI](https://github.com/ramangupta/I-AM-Root/actions/workflows/ci.yml/badge.svg)
 
