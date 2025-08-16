@@ -356,7 +356,7 @@ def main():
                 running = False
             elif event.type == pygame.KEYDOWN:
                 if event.key in [pygame.K_1, pygame.K_KP1]:
-                    breathing_session()
+                    breathing_session(screen=screen, play_music=True)
                 elif event.key in [pygame.K_2, pygame.K_KP2]:
                     show_quote()
                 elif event.key in [pygame.K_3, pygame.K_KP3]:
